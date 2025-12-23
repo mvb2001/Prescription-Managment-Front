@@ -10,7 +10,7 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// Request interceptor to add JWT token
+// Request interceptor to add JWT
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
@@ -37,7 +37,7 @@ api.interceptors.response.use(
   }
 );
 
-// Auth API
+// Auth API's
 export const authAPI = {
   loginDoctor: (credentials) => api.post('/api/auth/login', credentials),
   signupDoctor: (data) => api.post('/api/auth/signup/doctor', data),
