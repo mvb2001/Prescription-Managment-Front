@@ -7,6 +7,7 @@ import SignupDoctor from './pages/SignupDoctor';
 import SignupPharmacist from './pages/SignupPharmacist';
 import DoctorDashboard from './pages/DoctorDashboard';
 import PharmacistDashboard from './pages/PharmacistDashboard';
+import PatientPrescriptions from './pages/PatientPrescriptions';
 
 function App() {
   return (
@@ -22,6 +23,15 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={['DOCTOR']}>
                 <DoctorDashboard />
+              </ProtectedRoute>
+            }
+          />
+          
+          <Route
+            path="/doctor/patient/:patientId/prescriptions"
+            element={
+              <ProtectedRoute allowedRoles={['DOCTOR']}>
+                <PatientPrescriptions />
               </ProtectedRoute>
             }
           />

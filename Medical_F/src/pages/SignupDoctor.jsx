@@ -10,6 +10,7 @@ const SignupDoctor = () => {
     lastName: '',
     email: '',
     password: '',
+    confirmPassword: '',
     contact: '',
     mbbsUniversity: '',
     speciality: '',
@@ -27,10 +28,19 @@ const SignupDoctor = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    
+    // Validate password confirmation
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match!');
+      return;
+    }
+    
     setLoading(true);
 
     try {
-      await authAPI.signupDoctor(formData);
+      // Remove confirmPassword before sending to API
+      const { confirmPassword, ...registrationData } = formData;
+      await authAPI.signupDoctor(registrationData);
       alert('Registration successful! Please login.');
       navigate('/login');
     } catch (err) {
@@ -146,17 +156,31 @@ const SignupDoctor = () => {
               className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition bg-gray-50 focus:bg-white"
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Password *</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Password"
-              required
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition bg-gray-50 focus:bg-white"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Password *</label>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Password"
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition bg-gray-50 focus:bg-white"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password *</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                placeholder="Confirm password"
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition bg-gray-50 focus:bg-white"
+              />
+            </div>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">MBBS University *</label>

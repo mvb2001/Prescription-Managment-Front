@@ -56,7 +56,7 @@ const PharmacistDashboard = () => {
             </div>
             <button
               onClick={handleLogout}
-              className="bg-white text-teal-700 hover:bg-gray-100 px-8 py-3 rounded-xl font-semibold shadow-md transition transform hover:scale-105"
+              className="bg-red-500 text-white hover:bg-gray-100 px-8 py-3 rounded-xl font-semibold shadow-md transition transform hover:scale-105"
             >
               Logout
             </button>
