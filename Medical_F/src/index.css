@@ -1,3 +1,73 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Print Styles */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+
+  /* Show print-only elements */
+  .print\:block {
+    display: block !important;
+  }
+
+  /* Ensure proper page breaks */
+  .print\:break-inside-avoid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Remove shadows and unnecessary styling for print */
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+
+  /* Simplify borders for print */
+  .print\:border-2 {
+    border-width: 2px !important;
+  }
+
+  .print\:border-gray-300 {
+    border-color: #d1d5db !important;
+  }
+
+  /* Adjust margins for print */
+  .print\:mb-6 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Adjust grid for print */
+  .print\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .print\:col-span-2 {
+    grid-column: span 2 / span 2 !important;
+  }
+
+  /* Text adjustments for print */
+  .print\:text-black {
+    color: #000000 !important;
+  }
+
+  .print\:font-bold {
+    font-weight: 700 !important;
+  }
+
+  .print\:text-lg {
+    font-size: 1.125rem !important;
+    line-height: 1.75rem !important;
+  }
+}

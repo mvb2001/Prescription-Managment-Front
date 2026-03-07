@@ -57,6 +57,7 @@ export const patientAPI = {
 // Pharmacist API
 export const pharmacistAPI = {
   getAllPrescriptions: () => api.get('/pharmacist/prescriptions'),
+  deletePrescription: (prescriptionId) => api.delete(`/pharmacist/prescriptions/${prescriptionId}`),
 };
 
 export default api;
