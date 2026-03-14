@@ -37,8 +37,8 @@ jobs:
 
       # 6️⃣ Build Docker image
       - name: Build Docker Image
-        run: docker build -t yourdockerhubusername/frontend:latest .
+        run: docker build -t bhashitha22/frontend:latest .
 
       # 7️⃣ Push Docker image
       - name: Push Docker Image
-        run: docker push yourdockerhubusername/frontend:latest
+        run: docker push bhashitha22/frontend:latest
