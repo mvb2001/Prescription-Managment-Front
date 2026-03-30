@@ -48,7 +48,7 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-800 via-gray-900 to-slate-900 p-4">
       {/* Elegant animated wave background */}
       <div className="absolute inset-0">
-        {/* Multiple layered waves with parallax-like animation */}
+        
         <div className="absolute inset-0 opacity-40">
           <div className="wave wave1"></div>
           <div className="wave wave2"></div>
@@ -63,7 +63,7 @@ const Login = () => {
         }}></div>
       </div>
 
-      {/* Medical icons decoration  */}
+     
       <div className="absolute top-10 left-10 text-cyan-400 opacity-60">
         <svg className="w-20 h-20" fill="currentColor" viewBox="0 0 20 20">
           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
@@ -87,7 +87,7 @@ const Login = () => {
           <p className="text-gray-600">Welcome back! Please sign in</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* ... (form fields remain the same) ... */}
+         
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
             <input

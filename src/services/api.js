@@ -60,4 +60,9 @@ export const pharmacistAPI = {
   deletePrescription: (prescriptionId) => api.delete(`/pharmacist/prescriptions/${prescriptionId}`),
 };
 
+// Doctor Chat API
+export const chatAPI = {
+  sendMessage: (message) => api.post('/api/chat', { message }),
+};
+
 export default api;

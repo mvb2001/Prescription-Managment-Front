@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import PatientList from '../components/PatientList';
 import RegisterPatient from '../components/RegisterPatient';
 import RegisterPharmacist from '../components/RegisterPharmacist';
+import DoctorChatbot from '../components/DoctorChatbot';
 
 const DoctorDashboard = () => {
   const navigate = useNavigate();
@@ -16,10 +17,28 @@ const DoctorDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-800 via-gray-900 to-slate-900">
+      {/* Elegant animated wave background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 opacity-40">
+          <div className="wave wave1"></div>
+          <div className="wave wave2"></div>
+          <div className="wave wave3"></div>
+          <div className="wave wave4"></div>
+        </div>
+
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 20% 80%, rgba(34, 211, 238, 0.4) 0%, transparent 50%),
+                             radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.35) 0%, transparent 50%)`,
+          }}
+        ></div>
+      </div>
+
       {/* Navbar */}
-      <nav className="bg-gradient-to-r from-teal-600 to-teal-700 shadow-xl">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+      <nav className="bg-gradient-to-r from-teal-600 to-teal-700 shadow-xl relative z-10">
+        <div className="max-w-screen-2xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-3xl font-bold text-white">Doctor Dashboard</h1>
@@ -36,7 +55,7 @@ const DoctorDashboard = () => {
       </nav>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      <div className="max-w-screen-2xl mx-auto px-8 py-10 relative z-10">
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
           {/* Header with Tabs */}
           <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-8 py-6">
@@ -74,6 +93,16 @@ const DoctorDashboard = () => {
               >
                 Register Pharmacist
               </button>
+              <button
+                onClick={() => setActiveTab('assistant')}
+                className={`px-8 py-4 rounded-xl font-semibold transition-all duration-200 shadow-md ${
+                  activeTab === 'assistant'
+                    ? 'bg-white text-teal-700'
+                    : 'bg-teal-800 text-teal-100 hover:bg-teal-700'
+                }`}
+              >
+                AI Assistant
+              </button>
             </div>
           </div>
 
@@ -94,12 +123,38 @@ const DoctorDashboard = () => {
                 <RegisterPharmacist />
               </div>
             )}
+            {activeTab === 'assistant' && (
+              <div className="animate-fade-in">
+                <DoctorChatbot />
+              </div>
+            )}
           </div>
         </div>
       </div>
 
       {/* Fade-in animation */}
-      <style jsx>{`
+      <style jsx global>{`
+        .wave {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 200%;
+          height: 600px;
+          background: linear-gradient(transparent, rgba(255,255,255,0.8));
+          border-radius: 50%;
+          animation: wave 15s linear infinite;
+        }
+        .wave1 { animation-duration: 25s; background: radial-gradient(circle, rgba(6,182,212,0.6) 0%, rgba(34,211,238,0.4) 40%, transparent 70%); }
+        .wave2 { animation-duration: 20s; animation-delay: -5s; background: radial-gradient(circle, rgba(20,184,166,0.55) 0%, rgba(16,185,129,0.35) 40%, transparent 70%); }
+        .wave3 { animation-duration: 18s; animation-delay: -10s; background: radial-gradient(circle, rgba(34,211,238,0.5) 0%, rgba(6,182,212,0.3) 40%, transparent 70%); height: 500px; }
+        .wave4 { animation-duration: 22s; animation-delay: -2s; background: radial-gradient(circle, rgba(16,185,129,0.45) 0%, rgba(20,184,166,0.25) 40%, transparent 70%); height: 700px; }
+
+        @keyframes wave {
+          0% { transform: translateX(0) translateZ(0) scaleY(1); }
+          50% { transform: translateX(-25%) translateZ(0) scaleY(0.8); }
+          100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
+        }
+
         @keyframes fadeIn {
           from {
             opacity: 0;
